@@ -76,7 +76,14 @@ export default function AdminDashboardPage() {
 
   useEffect(() => {
     if (isAdmin) {
-      loadData();
+      let isCurrent = true;
+      void Promise.resolve().then(() => {
+        if (isCurrent) return loadData();
+        return undefined;
+      });
+      return () => {
+        isCurrent = false;
+      };
     }
   }, [isAdmin, loadData]);
 
@@ -343,8 +350,8 @@ export default function AdminDashboardPage() {
                 </p>
                 <div style={{ display: 'flex', gap: '0.75rem', flexWrap: 'wrap' }}>
                   <a
-                    href="/downloads/ACANS-2026-Paper-Presentation-Template.docx"
-                    download="ACANS-2026-Paper-Presentation-Template.docx"
+                    href="/downloads/Paper-presentation-templete.docx"
+                    download="Paper-presentation-templete.docx"
                     className="btn btn-sm btn-teal"
                   >
                     📥 Test Download Public DOCX

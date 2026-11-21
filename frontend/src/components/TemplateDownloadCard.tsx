@@ -7,13 +7,13 @@ interface TemplateDownloadCardProps {
 }
 
 export default function TemplateDownloadCard({ compact = false }: TemplateDownloadCardProps) {
-  const downloadUrl = '/downloads/ACANS-2026-Paper-Presentation-Template.docx';
+  const downloadUrl = '/downloads/Paper-presentation-templete.docx';
 
   if (compact) {
     return (
       <a
         href={downloadUrl}
-        download="ACANS-2026-Paper-Presentation-Template.docx"
+        download="Paper-presentation-templete.docx"
         className="btn btn-primary btn-sm"
         id="download-template-compact-btn"
       >
@@ -74,13 +74,13 @@ export default function TemplateDownloadCard({ compact = false }: TemplateDownlo
           </h3>
 
           <p style={{ fontSize: '0.875rem', color: '#475569', marginBottom: '0.9rem', lineHeight: '1.5' }}>
-            Use the official editable document to prepare your paper presentation. The abstract summary limit is <strong>250 words</strong>.
+            Use the official document to prepare your paper presentation. The abstract summary limit is <strong>250 words</strong>.
           </p>
 
           <div style={{ display: 'flex', gap: '0.75rem', flexWrap: 'wrap', alignItems: 'center' }}>
             <a
               href={downloadUrl}
-              download="ACANS-2026-Paper-Presentation-Template.docx"
+              download="Paper-presentation-templete.docx"
               className="btn btn-primary"
               id="download-official-template-btn"
             >
@@ -90,9 +90,6 @@ export default function TemplateDownloadCard({ compact = false }: TemplateDownlo
               Download Paper Presentation Template (.docx)
             </a>
 
-            <span style={{ fontSize: '0.8rem', color: '#64748b' }}>
-              Editable DOCX format
-            </span>
           </div>
         </div>
       </div>

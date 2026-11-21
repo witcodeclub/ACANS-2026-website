@@ -5,20 +5,41 @@ import Link from 'next/link';
 import { api } from '../../lib/api';
 import { EventTheme } from '../../types';
 import { normalizeEventText } from '../../lib/eventText';
+import { defaultThemes } from '../../lib/defaultThemes';
 
 export default function ThemesPage() {
-  const [themes, setThemes] = useState<EventTheme[]>([]);
+  const [themes, setThemes] = useState<EventTheme[]>(defaultThemes);
+  const [loading, setLoading] = useState(true);
+  const [loadError, setLoadError] = useState('');
   const [filter, setFilter] = useState<'all' | 'workshop' | 'conference'>('all');
   const [searchTerm, setSearchTerm] = useState('');
 
   useEffect(() => {
+    let isCurrent = true;
     api.getPublicSettings()
-      .then(res => setThemes((res.settings?.themes || []).map(theme => ({
-        ...theme,
-        title: normalizeEventText(theme.title),
-        description: theme.description ? normalizeEventText(theme.description) : theme.description,
-      }))))
-      .catch(err => console.error('Error fetching themes:', err));
+      .then(res => {
+        if (!isCurrent) return;
+        const apiThemes = (res.settings?.themes || []).filter(theme => theme.isPublished).map(theme => ({
+          ...theme,
+          title: normalizeEventText(theme.title),
+          description: theme.description ? normalizeEventText(theme.description) : theme.description,
+        }));
+        if (apiThemes.length > 0) {
+          setThemes(apiThemes.sort((a, b) => a.sortOrder - b.sortOrder));
+        } else {
+          setLoadError('Showing the published ACANS 2026 theme list while the online theme list is unavailable.');
+        }
+      })
+      .catch(err => {
+        console.error('Error fetching themes:', err);
+        if (isCurrent) setLoadError('Showing the published ACANS 2026 theme list while the online theme list is unavailable.');
+      })
+      .finally(() => {
+        if (isCurrent) setLoading(false);
+      });
+    return () => {
+      isCurrent = false;
+    };
   }, []);
 
   const filteredThemes = themes.filter(theme => {
@@ -95,6 +116,7 @@ export default function ThemesPage() {
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
                 className="form-control"
+                aria-label="Search conference themes"
                 style={{ padding: '0.45rem 0.75rem', fontSize: '0.85rem' }}
               />
             </div>
@@ -104,7 +126,7 @@ export default function ThemesPage() {
           <div className="grid-2">
             {filteredThemes.map((theme, index) => (
               <div
-                key={index}
+                key={theme.title}
                 className="card card-interactive"
                 style={{
                   display: 'flex',
@@ -156,7 +178,19 @@ export default function ThemesPage() {
             ))}
           </div>
 
-          {filteredThemes.length === 0 && (
+          {loading && (
+            <div role="status" style={{ textAlign: 'center', padding: '3rem 0', color: '#64748b' }}>
+              Loading conference themes...
+            </div>
+          )}
+
+          {!loading && loadError && (
+            <div role="status" className="alert alert-info" style={{ marginTop: '1rem' }}>
+              {loadError}
+            </div>
+          )}
+
+          {!loading && !loadError && filteredThemes.length === 0 && (
             <div style={{ textAlign: 'center', padding: '3rem 0', color: '#64748b' }}>
               No themes found matching your search.
             </div>

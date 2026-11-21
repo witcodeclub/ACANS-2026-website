@@ -2,7 +2,6 @@ import React from 'react';
 
 interface StatusBadgeProps {
   status: string;
-  type?: 'registration' | 'payment' | 'abstract' | 'theme';
 }
 
 const statusLabels: Record<string, string> = {
@@ -22,7 +21,7 @@ const statusLabels: Record<string, string> = {
   conference: 'Related Technical Topic',
 };
 
-export default function StatusBadge({ status, type = 'registration' }: StatusBadgeProps) {
+export default function StatusBadge({ status }: StatusBadgeProps) {
   const normalized = status.toLowerCase();
   const label = statusLabels[normalized] || status;
   const className = `badge badge-${normalized}`;

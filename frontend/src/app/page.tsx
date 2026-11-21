@@ -6,6 +6,7 @@ import Image from 'next/image';
 import { api } from '../lib/api';
 import { EventSettings } from '../types';
 import { normalizeEventText } from '../lib/eventText';
+import { defaultThemes } from '../lib/defaultThemes';
 import TemplateDownloadCard from '../components/TemplateDownloadCard';
 
 function ProfilePortrait({
@@ -42,15 +43,20 @@ function ProfilePortrait({
 
 export default function HomePage() {
   const [settings, setSettings] = useState<EventSettings | null>(null);
+  const [settingsLoadError, setSettingsLoadError] = useState(false);
   const [activeThemeTab, setActiveThemeTab] = useState<'all' | 'workshop' | 'conference'>('all');
 
   useEffect(() => {
     api.getPublicSettings()
       .then(res => setSettings(res.settings))
-      .catch(err => console.error('Error loading settings:', err));
+      .catch(err => {
+        console.error('Error loading settings:', err);
+        setSettingsLoadError(true);
+      });
   }, []);
 
-  const themes = (settings?.themes || []).map((theme) => ({
+  const publishedThemes = settings?.themes?.length ? settings.themes : defaultThemes;
+  const themes = [...publishedThemes].sort((a, b) => a.sortOrder - b.sortOrder).map((theme) => ({
     ...theme,
     title: normalizeEventText(theme.title),
     description: theme.description ? normalizeEventText(theme.description) : theme.description,
@@ -69,7 +75,7 @@ export default function HomePage() {
     },
     {
       role: 'Patron',
-      name: 'Dr. Divya Rani',
+      name: 'Dr. Divya Rani Hansda',
       designation: 'Registrar, LNMU',
       institution: 'Lalit Narayan Mithila University, Darbhanga',
       image: '/images/leadership/dr-divya-rani.png',
@@ -229,8 +235,8 @@ export default function HomePage() {
           {/* Action CTAs */}
           <div style={{ display: 'flex', gap: '0.75rem', justifyContent: 'center', flexWrap: 'wrap' }}>
             <a
-              href="/downloads/ACANS-2026-Paper-Presentation-Template.docx"
-              download="ACANS-2026-Paper-Presentation-Template.docx"
+              href="/downloads/Paper-presentation-templete.docx"
+              download="Paper-presentation-templete.docx"
               className="btn btn-gold btn-lg"
               id="hero-template-cta"
             >
@@ -265,8 +271,8 @@ export default function HomePage() {
                     Abstract submission closes 3 December 2026. Submit a one-page abstract of no more than 250 words. Registration remains open after the abstract deadline, subject to arrangements; late abstracts will not be considered for publication.
                   </div>
                   <a
-                    href="/downloads/ACANS-2026-Paper-Presentation-Template.docx"
-                    download="ACANS-2026-Paper-Presentation-Template.docx"
+                    href="/downloads/Paper-presentation-templete.docx"
+                    download="Paper-presentation-templete.docx"
                     style={{ color: '#0f294a', fontWeight: 600, display: 'inline-block', marginTop: '0.25rem' }}
                   >
                     Download Paper Presentation Template (.docx) →
@@ -547,6 +553,11 @@ export default function HomePage() {
             <p className="section-subtitle">
               Seminar themes and related topics in advanced computing and nuclear science.
             </p>
+            {settingsLoadError && (
+              <p role="status" style={{ marginTop: '0.5rem', color: '#64748b', fontSize: '0.85rem' }}>
+                Showing the approved ACANS 2026 themes while event settings are unavailable.
+              </p>
+            )}
 
             <div className="theme-filter-controls" style={{ display: 'inline-flex', gap: '0.4rem', marginTop: '1rem', backgroundColor: '#f1f5f9', padding: '0.25rem', borderRadius: '4px', border: '1px solid #e2e8f0' }}>
               <button

@@ -44,7 +44,7 @@ const registrationValidator = [
 ];
 
 const paymentValidator = [
-  body('transactionId').trim().notEmpty().withMessage('UPI UTR / Transaction ID is required').isLength({ min: 6, max: 100 }).withMessage('Please enter a valid UPI UTR / Transaction ID'),
+  body('transactionId').trim().matches(/^\d{12}$/).withMessage('UPI UTR / Transaction ID must be exactly 12 digits'),
   body('payerUpiId').trim().notEmpty().withMessage('Payer UPI ID is required (e.g. name@okhdfcbank)').isLength({ min: 3, max: 100 }),
   body('amountPaid').optional().isFloat({ min: 0 }).withMessage('Valid amount is required'),
   body('paymentDate').optional().isISO8601().withMessage('Valid payment date is required'),

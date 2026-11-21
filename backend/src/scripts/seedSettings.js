@@ -22,8 +22,8 @@ async function seedSettings() {
     settings.eventSubtitle = 'Advanced Computing and Nuclear Science: Emerging Technologies, Interdisciplinary Applications and Research Opportunities';
     settings.conferenceTitle = 'Indian Nuclear Society (INS) – Collaborating Organization';
     settings.conferenceSubtitle = 'Collaborating organization for ACANS 2026';
-    settings.abstractTemplateFile = 'uploads/templates/ACANS-2026-Paper-Presentation-Template.docx';
-    settings.abstractTemplateName = 'ACANS-2026-Paper-Presentation-Template.docx';
+    settings.abstractTemplateFile = 'uploads/templates/Paper-presentation-templete.docx';
+    settings.abstractTemplateName = 'Paper-presentation-templete.docx';
     settings.abstractInstructions = 'Prepare your paper presentation using the official ACANS 2026 Paper Presentation Template (DOCX). The online abstract summary must not exceed 250 words.';
     settings.abstractWordLimit = 250;
     settings.abstractDeadline = '3 December 2026';
@@ -86,9 +86,10 @@ async function seedSettings() {
       { name: 'Mr. Ashif Habibi', group: 'advisory_wit', sortOrder: 3 },
       { name: 'Dr. Zakirullah Shamim', group: 'advisory_wit', sortOrder: 4 },
       { name: 'Dr. Avinash Chandra', group: 'advisory_wit', sortOrder: 5 },
+      { name: 'Dr. Priyanka Rai', group: 'advisory_wit', sortOrder: 6 },
 
       // Organizing Committee
-      { name: 'Dr. Priyanka', designation: 'Deputy Registrar, WIT', group: 'organizing', sortOrder: 1 },
+      { name: 'Dr. Priyanka Rai', designation: 'Deputy Registrar, WIT', group: 'organizing', sortOrder: 1 },
       { name: 'Mr. Krishna Murari', designation: 'Administrative Officer, WIT', group: 'organizing', sortOrder: 2 },
       { name: 'Mr. Amit Mishra', designation: 'Assistant Professor, WIT', group: 'organizing', sortOrder: 3 },
       { name: 'Ms. Kajal Kumari', designation: 'Assistant Professor, WIT', group: 'organizing', sortOrder: 4 },
@@ -99,9 +100,9 @@ async function seedSettings() {
       { name: 'Mr. Ganesh Kumar Paswan', designation: 'Assistant Professor, WIT', group: 'organizing', sortOrder: 9 },
       { name: 'Dr. M.Z. Shamim', designation: 'Assistant Professor, WIT', group: 'organizing', sortOrder: 10 },
       { name: 'Dr. Chandrika Kumari', designation: 'Assistant Professor, WIT', group: 'organizing', sortOrder: 11 },
-      { name: 'Mr. Aashish Mishra', designation: 'Assistant Professor, WIT', group: 'organizing', sortOrder: 12 },
-      { name: 'Dr. Avinash Chandra', designation: 'Assistant Professor, WIT', group: 'organizing', sortOrder: 13 },
-      { name: 'Dr. Chandrika Kumari', designation: 'Assistant Professor, WIT', group: 'organizing', sortOrder: 14 },
+      { name: 'Dr. Avinash Chandra', designation: 'Assistant Professor, WIT', group: 'organizing', sortOrder: 12 },
+      { name: 'Mr. Vipul Kumar', designation: 'Assistant Professor, WIT', group: 'organizing', sortOrder: 13 },
+      { name: 'Dr. Utsav Kumar Prasar', designation: 'Assistant Professor, WIT', group: 'organizing', sortOrder: 14 },
     ];
 
     // Set themes

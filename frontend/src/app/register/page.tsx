@@ -6,6 +6,7 @@ import { useRouter, useSearchParams } from 'next/navigation';
 import { useAuth } from '../../context/AuthContext';
 import { api } from '../../lib/api';
 
+
 function RegisterContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
@@ -113,16 +114,11 @@ function RegisterContent() {
     }
   };
 
-  const feePreview: Record<string, string> = {
-    student: '₹500',
-    research_scholar: '₹750',
-    faculty: '₹1,000',
-  };
 
   return (
     <div style={{ backgroundColor: '#f8fafc', padding: '3rem 0' }}>
       <div className="container-narrow">
-        <div className="card" style={{ maxWidth: '640px', margin: '0 auto', padding: '2rem', borderTop: '4px solid #0f294a' }}>
+        <div id="participant-registration-form" className="card" style={{ maxWidth: '640px', margin: '0 auto', padding: '2rem', borderTop: '4px solid #0f294a' }}>
           <div style={{ textAlign: 'center', marginBottom: '1.75rem', borderBottom: '1px solid #e2e8f0', paddingBottom: '1rem' }}>
             <div style={{ fontSize: '0.785rem', fontWeight: 700, color: '#0f294a', textTransform: 'uppercase', letterSpacing: '0.04em' }}>
               ACANS 2026 National Seminar Registration
@@ -242,9 +238,6 @@ function RegisterContent() {
                   <option value="research_scholar">Research Scholar (₹750)</option>
                   <option value="faculty">Faculty (₹1,000)</option>
                 </select>
-                <div className="form-hint">
-                  Applicable seminar fee: <strong>{feePreview[formData.participantCategory] || '₹500'}</strong>
-                </div>
               </div>
             </div>
 

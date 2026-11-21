@@ -35,6 +35,7 @@ const paymentSchema = new mongoose.Schema({
     type: String,
     required: [true, 'UPI UTR / Transaction ID is required'],
     trim: true,
+    match: [/^\d{12}$/, 'UPI UTR / Transaction ID must be exactly 12 digits'],
   },
   payerUpiId: {
     type: String,

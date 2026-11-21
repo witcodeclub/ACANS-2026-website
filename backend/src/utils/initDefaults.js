@@ -5,7 +5,7 @@ const config = require('../config');
 const aboutWITText = 'Dr. A.P.J. Abdul Kalam Women\'s Institute of Technology (WIT), a constituent unit of Lalit Narayan Mithila University, Darbhanga, Bihar, was established in 2004 and inaugurated by Bharat Ratna Dr. A.P.J. Abdul Kalam on December 30, 2005. The institute is dedicated to providing technical education to women and contributing to the development of the Mithila region.';
 const contactPhoneNumbers = '9971144418, 9473370707';
 const organizingCommitteeMembers = [
-  { name: 'Dr. Priyanka', designation: 'Deputy Registrar, WIT' },
+  { name: 'Dr. Priyanka Rai', designation: 'Deputy Registrar, WIT' },
   { name: 'Mr. Krishna Murari', designation: 'Administrative Officer, WIT' },
   { name: 'Mr. Amit Mishra', designation: 'Assistant Professor, WIT' },
   { name: 'Ms. Kajal Kumari', designation: 'Assistant Professor, WIT' },
@@ -16,9 +16,33 @@ const organizingCommitteeMembers = [
   { name: 'Mr. Ganesh Kumar Paswan', designation: 'Assistant Professor, WIT' },
   { name: 'Dr. M.Z. Shamim', designation: 'Assistant Professor, WIT' },
   { name: 'Dr. Chandrika Kumari', designation: 'Assistant Professor, WIT' },
-  { name: 'Mr. Aashish Mishra', designation: 'Assistant Professor, WIT' },
   { name: 'Dr. Avinash Chandra', designation: 'Assistant Professor, WIT' },
-  { name: 'Dr. Chandrika Kumari', designation: 'Assistant Professor, WIT' },
+  { name: 'Mr. Vipul Kumar', designation: 'Assistant Professor, WIT' },
+  { name: 'Dr. Utsav Kumar Prasar', designation: 'Assistant Professor, WIT' },
+];
+
+const defaultThemes = [
+  { title: 'Advanced Computing Applications in Nuclear Science', category: 'workshop', sortOrder: 1, isPublished: true },
+  { title: 'AI and Digital Twins for Nuclear Reactor Monitoring and Safety', category: 'workshop', sortOrder: 2, isPublished: true },
+  { title: 'Advanced Computing Applications in Healthcare and Medical Sciences', category: 'workshop', sortOrder: 3, isPublished: true },
+  { title: 'Nuclear Physics and Advanced Computing in Cancer Diagnosis and Treatment', category: 'workshop', sortOrder: 4, isPublished: true },
+  { title: 'Advanced Computing for Molecular and Cellular Biology', category: 'workshop', sortOrder: 5, isPublished: true },
+  { title: 'Hazard Prediction and Management', category: 'workshop', sortOrder: 6, isPublished: true },
+  { title: 'GeoAI and High-Performance Computing for Nuclear Power Plant Siting and Environmental Risk Assessment', category: 'workshop', sortOrder: 7, isPublished: true },
+  { title: 'AI, Machine Learning, Data Science, Cloud Computing, Cybersecurity, IoT, Generative AI, and Industry 5.0', category: 'workshop', sortOrder: 8, isPublished: true },
+  { title: '700 MWe PHWR: Work Horse of DAE', category: 'conference', sortOrder: 1, isPublished: true },
+  { title: 'Innovation & Challenges in Design and Validation of SMRs and BSR-220', category: 'conference', sortOrder: 2, isPublished: true },
+  { title: 'PFBR: Gateway to Thorium Utilization', category: 'conference', sortOrder: 3, isPublished: true },
+  { title: 'Accelerating Nuclear Power: Role of PSUs and Private Industries in National Nuclear Mission', category: 'conference', sortOrder: 4, isPublished: true },
+  { title: 'Developing Human Resources for Nuclear Power Sector', category: 'conference', sortOrder: 5, isPublished: true },
+  { title: 'Advances in Reactor Technology for Gen III+ Reactors', category: 'conference', sortOrder: 6, isPublished: true },
+  { title: 'Advances in Nuclear Fuel Cycle Technologies (From Ore to Core)', category: 'conference', sortOrder: 7, isPublished: true },
+  { title: 'Advances in Fuel Reprocessing and Waste Management', category: 'conference', sortOrder: 8, isPublished: true },
+  { title: 'Statutory Role of AERB and SHANTI Act', category: 'conference', sortOrder: 9, isPublished: true },
+  { title: 'Recent Developments in Nuclear Technology for Agriculture and Food Security', category: 'conference', sortOrder: 10, isPublished: true },
+  { title: 'Applications of Radioisotopes, Lasers and Electron Beam in Industry', category: 'conference', sortOrder: 11, isPublished: true },
+  { title: 'Nuclear Medicine: Current Challenges and Innovations', category: 'conference', sortOrder: 12, isPublished: true },
+  { title: 'Recent Advances in Fusion and Accelerator Technology', category: 'conference', sortOrder: 13, isPublished: true },
 ];
 
 async function initDefaults() {
@@ -57,8 +81,8 @@ async function initDefaults() {
         abstractWordLimit: 250,
         abstractDeadline: '3 December 2026',
         abstractInstructions: 'Prepare your paper presentation using the official ACANS 2026 Paper Presentation Template (DOCX). The online abstract summary must not exceed 250 words.',
-        abstractTemplateFile: 'uploads/templates/ACANS-2026-Paper-Presentation-Template.docx',
-        abstractTemplateName: 'ACANS-2026-Paper-Presentation-Template.docx',
+        abstractTemplateFile: 'uploads/templates/Paper-presentation-templete.docx',
+        abstractTemplateName: 'Paper-presentation-templete.docx',
         registrationOpen: true,
         abstractSubmissionOpen: true,
         contactEmail: 'contact@insac2026.org',
@@ -99,6 +123,7 @@ async function initDefaults() {
           { name: 'Mr. Ashif Habibi', group: 'advisory_wit', sortOrder: 3 },
           { name: 'Dr. Zakirullah Shamim', group: 'advisory_wit', sortOrder: 4 },
           { name: 'Dr. Avinash Chandra', group: 'advisory_wit', sortOrder: 5 },
+          { name: 'Dr. Priyanka Rai', group: 'advisory_wit', sortOrder: 6 },
 
           // Organizing Committee
           ...organizingCommitteeMembers.map((member, index) => ({
@@ -107,32 +132,7 @@ async function initDefaults() {
             sortOrder: index + 1,
           })),
         ],
-        themes: [
-          // Seminar Themes
-          { title: 'Advanced Computing Applications in Nuclear Science', category: 'workshop', sortOrder: 1, isPublished: true },
-          { title: 'AI and Digital Twins for Nuclear Reactor Monitoring and Safety', category: 'workshop', sortOrder: 2, isPublished: true },
-          { title: 'Advanced Computing Applications in Healthcare and Medical Sciences', category: 'workshop', sortOrder: 3, isPublished: true },
-          { title: 'Nuclear Physics and Advanced Computing in Cancer Diagnosis and Treatment', category: 'workshop', sortOrder: 4, isPublished: true },
-          { title: 'Advanced Computing for Molecular and Cellular Biology', category: 'workshop', sortOrder: 5, isPublished: true },
-          { title: 'Hazard Prediction and Management', category: 'workshop', sortOrder: 6, isPublished: true },
-          { title: 'GeoAI and High-Performance Computing for Nuclear Power Plant Siting and Environmental Risk Assessment', category: 'workshop', sortOrder: 7, isPublished: true },
-          { title: 'AI, Machine Learning, Data Science, Cloud Computing, Cybersecurity, IoT, Generative AI, and Industry 5.0', category: 'workshop', sortOrder: 8, isPublished: true },
-
-          // Related nuclear science topics
-          { title: '700 MWe PHWR: Work Horse of DAE', category: 'conference', sortOrder: 1, isPublished: true },
-          { title: 'Innovation & Challenges in Design and Validation of SMRs and BSR-220', category: 'conference', sortOrder: 2, isPublished: true },
-          { title: 'PFBR: Gateway to Thorium Utilization', category: 'conference', sortOrder: 3, isPublished: true },
-          { title: 'Accelerating Nuclear Power: Role of PSUs and Private Industries in National Nuclear Mission', category: 'conference', sortOrder: 4, isPublished: true },
-          { title: 'Developing Human Resources for Nuclear Power Sector', category: 'conference', sortOrder: 5, isPublished: true },
-          { title: 'Advances in Reactor Technology for Gen III+ Reactors', category: 'conference', sortOrder: 6, isPublished: true },
-          { title: 'Advances in Nuclear Fuel Cycle Technologies (From Ore to Core)', category: 'conference', sortOrder: 7, isPublished: true },
-          { title: 'Advances in Fuel Reprocessing and Waste Management', category: 'conference', sortOrder: 8, isPublished: true },
-          { title: 'Statutory Role of AERB and SHANTI Act', category: 'conference', sortOrder: 9, isPublished: true },
-          { title: 'Recent Developments in Nuclear Technology for Agriculture and Food Security', category: 'conference', sortOrder: 10, isPublished: true },
-          { title: 'Applications of Radioisotopes, Lasers and Electron Beam in Industry', category: 'conference', sortOrder: 11, isPublished: true },
-          { title: 'Nuclear Medicine: Current Challenges and Innovations', category: 'conference', sortOrder: 12, isPublished: true },
-          { title: 'Recent Advances in Fusion and Accelerator Technology', category: 'conference', sortOrder: 13, isPublished: true },
-        ],
+        themes: defaultThemes,
       });
       await settings.save();
       console.log('Event settings seeded successfully.');
@@ -176,8 +176,8 @@ async function initDefaults() {
         settingsUpdated = true;
       }
       updateText('abstractInstructions', [[/INSAC[ -]?2026/gi, 'ACANS 2026'], [/not exceed 2 pages|maximum 2 pages|maximum of two pages/gi, 'not exceed one page or 250 words'], [/hosted by/gi, 'organised by'], [/official ACANS 2026 abstract template/gi, 'official ACANS 2026 Paper Presentation Template (DOCX)']]);
-      updateText('abstractTemplateName', [[/INSAC[ -]?2026/gi, 'ACANS 2026'], [/ACANS-2026-(?:extended-)?abstract-template\.docx/gi, 'ACANS-2026-Paper-Presentation-Template.docx']]);
-      updateText('abstractTemplateFile', [[/Template_for_extended_abstract_INSAC-2026\.docx/gi, 'uploads/templates/ACANS-2026-Paper-Presentation-Template.docx'], [/Template_for_extended_abstract_ACANS-2026\.docx/gi, 'uploads/templates/ACANS-2026-Paper-Presentation-Template.docx'], [/uploads\/templates\/ACANS-2026-extended-abstract-template\.docx/gi, 'uploads/templates/ACANS-2026-Paper-Presentation-Template.docx']]);
+      updateText('abstractTemplateName', [[/INSAC[ -]?2026/gi, 'ACANS 2026'], [/ACANS-2026-(?:extended-)?abstract-template\.docx/gi, 'Paper-presentation-templete.docx'], [/ACANS-2026-Paper-Presentation-Template\.docx/gi, 'Paper-presentation-templete.docx']]);
+      updateText('abstractTemplateFile', [[/Template_for_extended_abstract_INSAC-2026\.docx/gi, 'uploads/templates/Paper-presentation-templete.docx'], [/Template_for_extended_abstract_ACANS-2026\.docx/gi, 'uploads/templates/Paper-presentation-templete.docx'], [/uploads\/templates\/ACANS-2026-extended-abstract-template\.docx/gi, 'uploads/templates/Paper-presentation-templete.docx'], [/uploads\/templates\/ACANS-2026-Paper-Presentation-Template\.docx/gi, 'uploads/templates/Paper-presentation-templete.docx']]);
       if (settings.aboutWIT !== aboutWITText) {
         settings.aboutWIT = aboutWITText;
         settingsUpdated = true;
@@ -201,6 +201,15 @@ async function initDefaults() {
         settings.committees = (settings.committees || [])
           .filter((member) => member.group !== 'organizing')
           .concat(expectedOrganizingMembers);
+        settingsUpdated = true;
+      }
+      if (!(settings.committees || []).some((member) => member.name === 'Dr. Priyanka Rai' && member.group === 'advisory_wit')) {
+        if (!Array.isArray(settings.committees)) settings.committees = [];
+        settings.committees.push({ name: 'Dr. Priyanka Rai', group: 'advisory_wit', sortOrder: 6 });
+        settingsUpdated = true;
+      }
+      if (!Array.isArray(settings.themes) || settings.themes.length === 0) {
+        settings.themes = defaultThemes;
         settingsUpdated = true;
       }
       const charmis = (settings.committees || []).find((member) => member.name === 'Mrs. Charmis Mariwala');
@@ -309,14 +318,14 @@ async function initDefaults() {
       }
 
       if (typeof settings.abstractTemplateName === 'string' && /(?:extended-)?abstract-template/i.test(settings.abstractTemplateName)) {
-        settings.abstractTemplateName = 'ACANS-2026-Paper-Presentation-Template.docx';
+        settings.abstractTemplateName = 'Paper-presentation-templete.docx';
         settingsUpdated = true;
       }
 
       // Ensure template path is set if empty
       if (!settings.abstractTemplateFile || /ACANS-2026-extended-abstract-template\.docx/i.test(settings.abstractTemplateFile) || settings.abstractTemplateName === 'Template for extended abstract (ACANS 2026).docx') {
-        settings.abstractTemplateFile = 'uploads/templates/ACANS-2026-Paper-Presentation-Template.docx';
-        settings.abstractTemplateName = 'ACANS-2026-Paper-Presentation-Template.docx';
+        settings.abstractTemplateFile = 'uploads/templates/Paper-presentation-templete.docx';
+        settings.abstractTemplateName = 'Paper-presentation-templete.docx';
         settingsUpdated = true;
       }
 

@@ -19,7 +19,10 @@ exports.submitPayment = async (req, res, next) => {
     }
 
     const paymentMethod = req.body.paymentMethod || 'upi';
-    const amountPaid = Number(req.body.amountPaid) || registration.feeAmount;
+    const amountPaid = req.body.amountPaid === undefined ? registration.feeAmount : Number(req.body.amountPaid);
+    if (!Number.isFinite(amountPaid) || amountPaid !== registration.feeAmount) {
+      return res.status(400).json({ success: false, message: `Payment amount must match the registration fee of ₹${registration.feeAmount}.` });
+    }
     const paymentDate = req.body.paymentDate || new Date();
 
     const payment = await Payment.create({

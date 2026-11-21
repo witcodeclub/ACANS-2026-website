@@ -95,8 +95,8 @@ async function runTests() {
     // 3. Official Template Download
     const templateRes = await makeRequest('GET', '/api/v1/settings/template/download');
     assert(templateRes.statusCode === 200, 'Template download route returns 200');
-    assert(templateRes.headers['content-disposition'].includes('ACANS-2026-Paper-Presentation-Template.docx'), 'Downloaded filename matches the ACANS 2026 Paper Presentation Template');
-    const expectedTemplateSize = fs.statSync(path.join(__dirname, '../../uploads/templates/ACANS-2026-Paper-Presentation-Template.docx')).size;
+    assert(templateRes.headers['content-disposition'].includes('Paper-presentation-templete.docx'), 'Downloaded filename matches the ACANS 2026 Paper Presentation Template');
+    const expectedTemplateSize = fs.statSync(path.join(__dirname, '../../uploads/templates/Paper-presentation-templete.docx')).size;
     assert(templateRes.raw.length === expectedTemplateSize, 'Downloaded file size matches the DOCX paper presentation template');
 
     // 4. Participant Registration
@@ -151,12 +151,21 @@ async function runTests() {
     const registrationRef = createReg.body.registration.registrationRef;
 
     // 9. Payment Submission (UPI reporting)
+    const invalidUtrRes = await makeRequest('POST', '/api/v1/payments', {
+      registrationRef,
+      paymentMethod: 'upi',
+      amountPaid: 750,
+      transactionId: 'UPI123456789012',
+      payerUpiId: 'anita@oksbi',
+    }, participantCookie);
+    assert(invalidUtrRes.statusCode === 400, 'Payment submission rejects UTRs that are not exactly 12 digits');
+
     const payRes = await makeRequest('POST', '/api/v1/payments', {
       registrationRef: registrationRef,
       paymentMethod: 'upi',
       amountPaid: 750,
       paymentDate: '2026-10-27',
-      transactionId: 'UPI123456789012',
+      transactionId: '123456789012',
       payerUpiId: 'anita@oksbi',
       remarks: 'Paid as per WIT LNMU instructions',
     }, participantCookie);

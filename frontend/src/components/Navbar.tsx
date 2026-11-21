@@ -16,7 +16,7 @@ export default function Navbar() {
 
   return (
     <header className="site-header" style={{ width: '100%', zIndex: 1000, position: 'relative' }}>
-      {/* 1. Top Institutional Utility Strip */}
+      {/* Top Institutional Utility Strip */}
       <div style={{
         backgroundColor: '#071529',
         color: '#cbd5e1',
@@ -27,8 +27,6 @@ export default function Navbar() {
         <div className="container utility-strip-content">
           <div className="utility-strip-institutions">
             <span>Dr. A.P.J. Abdul Kalam Women&apos;s Institute of Technology (WIT), LNMU Darbhanga</span>
-            <span className="utility-divider" style={{ color: '#64748b' }}>|</span>
-            <span style={{ color: '#fcd34d' }}>In Collaboration with Indian Nuclear Society (INS)</span>
           </div>
           <div className="utility-strip-links">
             <Link href="/information#venue" style={{ color: '#cbd5e1' }}>Venue &amp; Travel</Link>
@@ -36,9 +34,7 @@ export default function Navbar() {
             <Link href="/information#contact" style={{ color: '#cbd5e1' }}>Helpdesk</Link>
             <span className="utility-divider" style={{ color: '#64748b' }}>|</span>
             {user ? (
-              <span style={{ color: '#67e8f9' }}>
-                Signed in as: <strong>{user.fullName}</strong>
-              </span>
+              <span style={{ color: '#67e8f9' }}>Signed in as: <strong>{user.fullName}</strong></span>
             ) : (
               <Link href="/login" style={{ color: '#fcd34d', fontWeight: 600 }}>Participant Login</Link>
             )}
@@ -46,7 +42,7 @@ export default function Navbar() {
         </div>
       </div>
 
-{/* 2. Institutional Header / Masthead */}
+      {/* Institutional Header / Masthead */}
 <div className="masthead">
   <div className="container masthead-container">
 
@@ -112,7 +108,7 @@ export default function Navbar() {
   </div>
 </div>
 
-      {/* 3. Solid Academic Navigation Bar */}
+      {/* Solid Academic Navigation Bar */}
       <nav style={{
         backgroundColor: '#0f294a',
         boxShadow: '0 2px 4px rgba(0,0,0,0.1)',

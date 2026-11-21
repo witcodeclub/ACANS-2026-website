@@ -101,10 +101,10 @@ export default function InformationPage() {
               </h2>
               <div className="alert alert-warning" style={{ marginBottom: '1.25rem' }}>
                 <div>
-                  <strong>Official College Payment Notice:</strong> Official payment instructions and accounts are communicated by Dr. A.P.J. Abdul Kalam Women&apos;s Institute of Technology (WIT) / LNMU. This website does not generate online payment gateways or QR codes.
+                  <strong>Official College Payment Notice:</strong> Official payment instructions and accounts are communicated by Dr. A.P.J. Abdul Kalam Women&apos;s Institute of Technology (WIT) / LNMU. 
                 </div>
               </div>
-              <OfficialPaymentDetails />
+              <OfficialPaymentDetails showAction={false} />
               <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem', color: '#334155', lineHeight: '1.7', fontSize: '0.9rem' }}>
                 <p>
                   Participants must follow this workflow below to register and verify their registration fee payment. The registration fee must be transferred to the official bank account provided above.

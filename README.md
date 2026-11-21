@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # ACANS 2026 National Seminar Website
 ### Joint Academic Event: Dr. A.P.J. Abdul Kalam WIT (LNMU) & Indian Nuclear Society (INS)
 
@@ -27,7 +26,7 @@ A full-stack, secure, production-grade seminar management web application for **
    - Participants record and report paid details (UPI UTR / transaction ID, cash receipt number, or bank transfer reference) on their dashboard.
    - Authorized administrators manually verify or reject submissions with an audit trail.
 6. **Official Abstract Template**:
-   - Official A4 abstract template for ACANS 2026, available as PDF and editable DOCX.
+   - Official A4 abstract template for ACANS 2026, available as PDF and DOCX.
    - Maximum one page and 250 words; follow the replacement template's built-in styles.
    - Configurable live word counter (default 250 words) enforced on both client and server.
    - Downloadable directly from the homepage, abstract submission page, and participant dashboard.
@@ -182,15 +181,14 @@ To access the private Admin Dashboard:
 
 ---
 
-## 6. Official Abstract Template
+## 6. Official Paper Presentation Template
 
-- **Source**: Retrieved live from the official conference reference site:  
-  `https://www.insac2026.org/pdf/Template%20for%20extended%20abstract%20(INSAC-2026).docx` (the original source URL retained as provenance)
-- **Download Label**: `ACANS-2026-abstract-template.docx`
+- **Source**: The supplied `Paper-presentation-templete.docx` Word document.
+- **Download File**: `Paper-presentation-templete.docx`
 - **Format**: Microsoft Word OpenXML (`.docx`)
-- **File Size**: 1.79 MB (1,793,931 bytes)
-- **Local Storage**: `backend/uploads/templates/ACANS-2026-extended-abstract-template.docx` and `frontend/public/downloads/`
-- **Serving Route**: `GET /api/v1/settings/template/download`
+- **File Size**: 33,858 bytes
+- **Local Storage**: `backend/uploads/templates/Paper-presentation-templete.docx` and `frontend/public/downloads/Paper-presentation-templete.docx`
+- **Serving Routes**: `GET /api/v1/settings/template/download` and `/downloads/Paper-presentation-templete.docx`
 - **Online Replacement**: Administrators can upload and replace the official template directly via `/admin` (Tab: "Event Content Settings") with automatic timestamped backup versioning.
 
 ---
@@ -219,7 +217,7 @@ A comprehensive automated test suite is included in `backend/src/scripts/testSui
 cd backend
 node src/scripts/testSuite.js
 ```
-**Result**: `34 PASSED, 0 FAILED`.
+**Result**: `36 PASSED, 0 FAILED`.
 
 ### Running Production Builds:
 ```bash
@@ -242,9 +240,6 @@ NODE_ENV=production node src/server.js
    - Route `/api/v1` to Node.js backend port `5001`.
    - Route `/` to Next.js frontend port `3000`.
    - Enable HTTPS/TLS and set `NODE_ENV=production` so `cookie.secure = true` is enforced.
+   - If the frontend and backend are hosted separately without a shared reverse proxy, set `BACKEND_URL` in the frontend build/runtime environment to the backend's reachable origin. The frontend only defaults to `http://localhost:5001` during local development.
 3. **Email Delivery**:
    - Configure active SMTP credentials (`SMTP_HOST`, `SMTP_USER`, `SMTP_PASS`) for real-time transactional emails.
-=======
-# insac-2026-website
-ACANS 2026 National Seminar website
->>>>>>> 6bbfdbf92b356880ab1e1b14ad5fad87811eba67

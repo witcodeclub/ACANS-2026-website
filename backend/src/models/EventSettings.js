@@ -92,8 +92,8 @@ const eventSettingsSchema = new mongoose.Schema({
   // Abstract settings
   abstractWordLimit: { type: Number, default: 250 },
   abstractDeadline: { type: String, default: '3 December 2026' },
-  abstractTemplateFile: { type: String, default: 'uploads/templates/ACANS-2026-Paper-Presentation-Template.docx' },
-  abstractTemplateName: { type: String, default: 'ACANS-2026-Paper-Presentation-Template.docx' },
+  abstractTemplateFile: { type: String, default: 'uploads/templates/Paper-presentation-templete.docx' },
+  abstractTemplateName: { type: String, default: 'Paper-presentation-templete.docx' },
   abstractInstructions: {
     type: String,
     default: 'Prepare your paper presentation using the official ACANS 2026 Paper Presentation Template (DOCX). The online abstract summary must not exceed 250 words.',
